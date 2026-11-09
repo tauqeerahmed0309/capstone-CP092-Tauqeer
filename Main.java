@@ -84,14 +84,12 @@ public class Main {
 
     static void showTasks() {
         if (tasks.isEmpty()) { System.out.println("No tasks added yet."); return; }
-        List<Task> sorted = sortedTasks();
-        for (int i = 0; i < sorted.size(); i++) {
-            Task task = sorted.get(i);
-            String state = task.completed ? "COMPLETED" : "PENDING";
-            String overdue = !task.completed && task.dueDate.isBefore(LocalDateTime.now()) ? " [OVERDUE]" : "";
-            System.out.printf("%d. %s | %s | due %s | %s%s%n", i + 1,
-                    task.title, quadrant(task), task.dueDate.format(FORMAT), state, overdue);
-        }
+        sortedTasks().forEach(task -> {
+                    String state = task.completed ? "COMPLETED" : "PENDING";
+                    String overdue = !task.completed && task.dueDate.isBefore(LocalDateTime.now()) ? " [OVERDUE]" : "";
+                    System.out.printf("%d. %s | %s | due %s | %s%s%n", tasks.indexOf(task) + 1,
+                            task.title, quadrant(task), task.dueDate.format(FORMAT), state, overdue);
+                });
     }
 
     static List<Task> sortedTasks() {
