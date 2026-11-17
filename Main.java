@@ -7,7 +7,7 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Task> tasks = new ArrayList<>();
     static int nextId = 1;
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy HH:mm");
 
     static class Task {
         int id;
@@ -64,7 +64,7 @@ public class Main {
 
         LocalDateTime dueDate;
         try {
-            System.out.print("Enter due date (yyyy-MM-dd HH:mm): ");
+            System.out.print("Enter due date (dd-mm-yyyy HH:mm): ");
             dueDate = LocalDateTime.parse(sc.nextLine(), formatter);
         } catch (Exception e) {
             System.out.println("Invalid date format.");
